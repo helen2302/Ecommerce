@@ -304,7 +304,7 @@ curl -X POST "http://localhost:8075/products/feedback?productId=1&rating=3"
 "Feedback sent successfully"
 ```
 
-  ### Use Case 14: Retrieve feedback rating for product (stream processing)
+  ### Use Case 14: Retrieve feedback for product (stream processing)
 
   Code for MacOs:
 ```bash
