@@ -119,7 +119,7 @@ curl -X POST "http://localhost:8072/orders/add/products?customerId=3&productId=2
 {"id":2,"customerId":3,"productIds":[2],"totalAmount":800.0,"creationDate":"2024-10-07T22:21:09.191266","message":"Successfully add product!","orderStatus":"PENDING"}%     
 ```
 
-  ### Use Case 5: Create completed order and shipment by pressing the checkout button (Kafka)
+  ### Use Case 5: Create completed order and shipment by pressing the checkout button (data transfer)
 
   Code for MacOs:
 ```bash
@@ -138,7 +138,7 @@ curl -X POST "http://localhost:8072/orders/checkout/customers/3" ^
 "Checkout successfully"                                                     
 ```
 
-  ### Use Case 6: Confirm shipment (Kafka)
+  ### Use Case 6: Confirm shipment (data transfer)
 
   Code for MacOs:
 ```bash
@@ -157,7 +157,7 @@ curl -X POST "http://localhost:8074/shipments/2/confirm?confirm=true" ^
 "Shipment confirmation processed successfully"
 ```
 
-  ### Use Case 7: View Payments by Customer ID
+  ### Use Case 7: View Payments by Customer ID (data transfer)
 
   Code for MacOs:
 ```bash
@@ -176,7 +176,7 @@ curl -X GET "http://localhost:8073/payments/customers/3" ^
 [{"paymentId":3,"customerId":3,"orderId":2,"amount":800.0,"cardNumber":"1234567812345678","paymentDate":"2024-10-07T22:25:19.995967"}]%  
 ```
 
-  ### Use Case 8: Cancel Order
+  ### Use Case 8: Cancel Order (data transfer)
 
   Code for MacOs:
 ```bash
@@ -271,7 +271,7 @@ curl -X GET "http://localhost:8073/receipts/customers/3" ^
 [{"receiptId":1,"orderId":2,"amountPaid":800.0,"paymentDate":"2024-10-07T22:25:19.995967","customerId":3,"paymentId":3}]% 
 ```
 
-  ### Use Case 13: Create feedback for product (kafka)
+  ### Use Case 13: Create feedback for product (stream processing)
 
   Code for MacOs:
 ```bash
@@ -304,7 +304,7 @@ curl -X POST "http://localhost:8075/products/feedback?productId=1&rating=3"
 "Feedback sent successfully"
 ```
 
-  ### Use Case 14: Retrieve feedback rating for product (kafka)
+  ### Use Case 14: Retrieve feedback rating for product (stream processing)
 
   Code for MacOs:
 ```bash
@@ -325,8 +325,27 @@ curl -X GET "http://localhost:8076/feedback"
     }
 ]
 ```
+  ### Use Case 15: Create Vendor Rating (stream processing)
+  Code for MacOs:
+```bash
+curl -X POST http://localhost:8075/vendors/rating \
+     -H "Content-Type: application/json" \
+     -d '{"vendorId": 1, "rating": 5}'
+```
 
-  ### Use Case 15: Retrieve Vendor Rating
+  Code for Windows:
+```shell
+curl -X POST http://localhost:8075/vendors/rating \
+     -H "Content-Type: application/json" \
+     -d '{"vendorId": 1, "rating": 5}'
+```
+
+  Result: 
+  ```json
+"Rating of vendor is sent successfully"
+```
+  
+  ### Use Case 16: Retrieve Vendor Rating (stream processing)
 
   Code for MacOs:
 ```bash
